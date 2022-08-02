@@ -12,7 +12,7 @@ import {SharedElement} from 'react-navigation-shared-element';
 import CardFlip from 'react-native-card-flip';
 import {useFocusEffect} from '@react-navigation/native';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
-import {credentialsList} from 'src/SharedData';
+// import {credentialsList} from 'src/SharedData';
 import {Colors} from 'src/SharedStyles';
 
 const HEADER_HEIGHT = 200;
