@@ -23,6 +23,7 @@ export default () => {
   return (
     <NavigationContainer>
       <RootStack.Navigator
+        initialRouteName="List"
         screenOptions={{
           transitionSpec: {
             open: iosTransitionSpec,
@@ -34,39 +35,23 @@ export default () => {
           //   },
           // }),
         }}>
-        <RootStack.Screen name="List" component={ListScreen} />
+        <RootStack.Screen
+          name="List"
+          component={ListScreen}
+          options={{headerShown: false}}
+        />
         <RootStack.Screen
           name="Detail"
           component={DetailScreen}
-          sharedElementsConfig={(route, otherRoute, showing) => {
-            // const {item} = route.params;
-            if (route.name === 'Details' && showing) {
-              // Open animation fades in image, title and description
-              return [
-                {
-                  id: '1234',
-                },
-                // {
-                //   id: `item.${item.id}.title`,
-                //   animation: "fade",
-                //   resize: "clip",
-                //   align: "left-top",
-                // },
-                // {
-                //   id: `item.${item.id}.description`,
-                //   animation: "fade",
-                //   resize: "clip",
-                //   align: "left-top",
-                // },
-              ];
-            } else {
-              // Close animation only fades out image
-              return [
-                {
-                  id: '1234',
-                },
-              ];
-            }
+          sharedElements={(route, otherRoute, showing) => {
+            return [{id: '1234', animation: 'fade'}];
+            // const {id} = route.params;
+            // console.log('nav id', id);
+            // if (route.name === 'Details' && showing) {
+            //   return [id];
+            // } else {
+            //   return [id];
+            // }
           }}
         />
       </RootStack.Navigator>

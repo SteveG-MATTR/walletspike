@@ -1,8 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
+import {useParam} from '';
+import Styles from 'src/SharedStyles';
 
-const DetailScreen = (): JSX.Element => {
+const DetailScreen = ({route}): JSX.Element => {
+  const {id} = route.params;
+  console.log('DetailScreen id', id);
   return (
     <View style={styles.container}>
       <SharedElement id="1234">
@@ -12,7 +16,13 @@ const DetailScreen = (): JSX.Element => {
           source={require('assets/NZPassportBack.png')}
         />
       </SharedElement>
-      <Text>DetailScreen</Text>
+      <Text style={Styles.titleText}>DetailScreen</Text>
+      <Text style={Styles.paragraphText}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+        dignissimos, sit earum illo quos repudiandae quasi consequuntur porro.
+        Laudantium quos nulla corrupti temporibus? Debitis incidunt earum non
+        cupiditate delectus deserunt?
+      </Text>
     </View>
   );
 };
