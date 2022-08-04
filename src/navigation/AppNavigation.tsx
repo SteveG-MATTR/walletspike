@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-// import {TransitionPresets} from '@react-navigation/stack';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import ListScreen from 'src/screens/ListScreen';
 import DetailScreen from 'src/screens/DetailScreen';
@@ -25,33 +24,24 @@ export default () => {
       <RootStack.Navigator
         initialRouteName="List"
         screenOptions={{
+          headerShown: false,
           transitionSpec: {
             open: iosTransitionSpec,
             close: iosTransitionSpec,
           },
-          // cardStyleInterpolator: ({current: {progress}}) => ({
-          //   cardStyle: {
-          //     opacity: progress,
-          //   },
-          // }),
+          cardStyleInterpolator: ({current: {progress}}) => ({
+            cardStyle: {
+              opacity: progress,
+            },
+          }),
         }}>
-        <RootStack.Screen
-          name="List"
-          component={ListScreen}
-          options={{headerShown: false}}
-        />
+        <RootStack.Screen name="List" component={ListScreen} />
         <RootStack.Screen
           name="Detail"
           component={DetailScreen}
-          sharedElements={(route, otherRoute, showing) => {
-            return [{id: '1234', animation: 'fade'}];
-            // const {id} = route.params;
-            // console.log('nav id', id);
-            // if (route.name === 'Details' && showing) {
-            //   return [id];
-            // } else {
-            //   return [id];
-            // }
+          sharedElements={(route, _otherRoute, _showing) => {
+            const {item} = route.params;
+            return [{id: item.id, animation: 'fade'}];
           }}
         />
       </RootStack.Navigator>
