@@ -19,11 +19,27 @@ const ListScreen = ({navigation}): JSX.Element => {
   const statusBarHeight = getStatusBarHeight();
   const [scrollAnim] = useState(new Animated.Value(0));
   const [offsetAnim] = useState(new Animated.Value(0));
+  const [clampedScroll, setClampedScroll] = useState(
+    Animated.diffClamp(
+      Animated.add(
+        scrollAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 1],
+          extrapolateLeft: 'clamp',
+        }),
+        offsetAnim,
+      ),
+      0,
+      1,
+    ),
+  );
 
   const headerTranslate = scrollAnim.interpolate({
     inputRange: [0, HEADER_HEIGHT],
     outputRange: [0, -HEADER_HEIGHT + statusBarHeight],
     extrapolate: 'clamp',
+    // outputRange: [0, -HEADER_HEIGHT + statusBarHeight],
+    // extrapolate: 'clamp',
   });
 
   const headerContentTranslate = scrollAnim.interpolate({
@@ -35,6 +51,7 @@ const ListScreen = ({navigation}): JSX.Element => {
   console.log('headerTranslate', headerTranslate);
 
   const renderItem = ({item}) => {
+    // console.log(styles.listImage);
     return (
       <TouchableScale
         onPress={() => {
@@ -121,12 +138,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  listImage: {},
+  listImage: {
+    // width: 200,
+    // height: 150,
+  },
   flatList: {flexGrow: 1, width: '100%'},
   flatListContentContainer: {paddingBottom: 50, paddingTop: HEADER_HEIGHT},
   header: {
     height: 200,
     justifyContent: 'flex-end',
+    //alignItems: 'center',
     backgroundColor: 'white',
     borderBottomWidth: 2,
     borderColor: Colors.primaryHighlight,
