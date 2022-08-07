@@ -3,6 +3,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import ListScreen from 'src/screens/ListScreen';
 import DetailScreen from 'src/screens/DetailScreen';
+import MenuScreen from 'src/screens/MenuScreen';
+import AnimOneScreen from 'src/screens/AnimOneScreen';
+import AnimTwoScreen from 'src/screens/AnimTwoScreen';
+import AnimThreeScreen from 'src/screens/AnimThreeScreen';
 
 export const iosTransitionSpec = {
   animation: 'spring',
@@ -22,7 +26,7 @@ export default () => {
   return (
     <NavigationContainer>
       <RootStack.Navigator
-        initialRouteName="List"
+        initialRouteName="Menu"
         screenOptions={{
           headerShown: false,
           transitionSpec: {
@@ -35,6 +39,15 @@ export default () => {
             },
           }),
         }}>
+        <RootStack.Screen
+          name="Menu"
+          component={MenuScreen}
+          options={{headerShown: true}}
+        />
+        <RootStack.Screen name="Anim1" component={AnimOneScreen} />
+        <RootStack.Screen name="Anim2" component={AnimTwoScreen} />
+        <RootStack.Screen name="Anim3" component={AnimThreeScreen} />
+
         <RootStack.Screen name="List" component={ListScreen} />
         <RootStack.Screen
           name="Detail"

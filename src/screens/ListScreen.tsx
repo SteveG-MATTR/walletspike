@@ -12,6 +12,7 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {Colors} from 'src/SharedStyles';
 import {SharedElement} from 'react-navigation-shared-element';
 import {credentialsList} from 'src/SharedData';
+// import MyTest from 'src/components/MyTest';
 
 const HEADER_HEIGHT = 200;
 

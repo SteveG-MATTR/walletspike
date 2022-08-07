@@ -8,6 +8,7 @@ import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {Colors} from 'src/SharedStyles';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Styles from 'src/SharedStyles';
+// import MyTest from 'src/components/MyTest';
 
 const DetailScreen = ({route, navigation}): JSX.Element => {
   const statusBarHeight = getStatusBarHeight();
